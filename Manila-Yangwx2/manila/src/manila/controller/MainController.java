@@ -169,15 +169,13 @@ public class MainController implements MouseListener{
 
     public void clickedOnBoatyard(int x,int y)
     {
-        Boatyard[] boatyards = game.getBoatyards();
-        for (int i = 0; i < boatyards.length; i++)
-        {
-            if (boatyards[i].isCursorInside(x, y) && boatyards[i].isEmpty())
+        Boatyard boatyards = game.getBoatyards();
+            if (boatyards.isCursorInside(x, y) && boatyards.isEmpty())
             {
                 Player p = this.game.getCurrentPlayer();
-                if (p.payPos(boatyards[i].getAvailablePrice()))
+                if (p.payPos(boatyards.getAvailablePrice()))
                 {
-                    boatyards[i].standInBoatyard(p.getPid());
+                    boatyards.standInBoatyard(p.getPid());
                 }
                 else
                 {
@@ -193,12 +191,11 @@ public class MainController implements MouseListener{
             }
 
         }
-    }
 
     public void clickedOnPirate(int x,int y){
         // TODO Put a partner in Pirate
         Pirate pirate=game.getPirates();
-        if(pirate.isCursorInside(x,y) && pirate.getAvailPosIndex()!=-1){//当可登船时
+        if(pirate.isCursorInside(x,y) && pirate.getPos_list().getSailorID()!=-1){//当可登船时
             Player p = this.game.getCurrentPlayer();
             if(p.payPos(pirate.getThePrice())){
                 pirate.getOnboard(p.getPid());
@@ -316,7 +313,7 @@ public class MainController implements MouseListener{
             for(int i=0;i<2;i++){
                 //TODO 是否登船？
                 //是
-                this.game.getPirates().getOnboat(boats[theBoat],this.game.getPirates().getPos_list()[i].getSailorID());
+                this.game.getPirates().getOnboat(boats[theBoat],this.game.getPirates().getPos_list().getSailorID());
                 //否
                 //TODO set the
                 continue;
@@ -328,7 +325,7 @@ public class MainController implements MouseListener{
                 //TODO 是否劫掠？
                 //是
                 if(boatList!=null)
-                    this.game.getPirates().ravageBoat(boatList,this.game.getPirates().getPos_list()[i].getSailorID());
+                    this.game.getPirates().ravageBoat(boatList,this.game.getPirates().getPos_list().getSailorID());
                 //否
                 continue;
             }

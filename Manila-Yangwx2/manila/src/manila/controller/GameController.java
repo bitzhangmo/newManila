@@ -317,11 +317,8 @@ public class GameController implements MouseListener{
 	    	for(int i=0;i<2;i++){
 				//TODO 是否登船？
 				//是
-<<<<<<< yangWX
 				this.game.getPirates().getOnboat(boats[theBoat],this.game.getPirates().getPos_list().getSailorID());
-=======
-				this.game.getPirates().getOnboat(boats[theBoat],this.game.getPirates().getPos_list()[i].getSailorID());
->>>>>>> dev
+
 				//否
 				//TODO set the
 				continue;
@@ -333,11 +330,8 @@ public class GameController implements MouseListener{
 				//TODO 是否劫掠？
 				//是
 				if(boatList!=null)
-<<<<<<< yangWX
 					this.game.getPirates().ravageBoat(boatList,this.game.getPirates().getPos_list().getSailorID());
-=======
-					this.game.getPirates().ravageBoat(boatList,this.game.getPirates().getPos_list()[i].getSailorID());
->>>>>>> dev
+
 				//否
 				continue;
 			}

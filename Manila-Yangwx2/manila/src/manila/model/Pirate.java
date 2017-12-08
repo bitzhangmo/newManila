@@ -35,14 +35,14 @@ public class Pirate {
 
      */
 
-    public int getAvailPosIndex() {
+    /*public int getAvailPosIndex() {
         for(int i=0; i<this.pos_list.length; i++){
             if(this.pos_list[i].getSailorID() == -1)
                 return i;
         }
         // no position left
         return -1;
- */
+
 
 
     /**
