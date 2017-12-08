@@ -1,5 +1,8 @@
 package manila.viewTry;
 
+
+import manila.model.Game;
+
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
@@ -20,6 +23,9 @@ import java.awt.SystemColor;
 import javax.swing.JComboBox;
 
 public class ElectView extends JFrame {
+
+
+	private Game game;
 
 	private JPanel mainJp;
 	private JTextField electMoney;
@@ -44,7 +50,9 @@ public class ElectView extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public ElectView() {
+
+	public ElectView(Game g) {
+		this.game=g;
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1498, 740);
@@ -104,7 +112,9 @@ public class ElectView extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				// TODO Auto-generated method stub
-				bv=new BossView();
+
+				bv=new BossView(game);
+
 				bv.setVisible(true);
 			}
 

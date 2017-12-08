@@ -5,6 +5,7 @@ import manila.view.PlaygroundView;
  */
 public class Boatyard
 {
+
     /**修船厂上的位置**/
     private Position pos;
     /**修船厂是否有损坏的船**/
@@ -97,6 +98,15 @@ public class Boatyard
         }
     }
 
+
+    public Position getPos() {
+        return pos;
+    }
+
+    public void setPos(Position pos) {
+        this.pos = pos;
+    }
+
     public int getPosX()
     {
         return this.posX;
@@ -113,7 +123,9 @@ public class Boatyard
     {
         this.posY = posY;
     }
+
     public Position getPos() {
         return pos;
     }
+
 }

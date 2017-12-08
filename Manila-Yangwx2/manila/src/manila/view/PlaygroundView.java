@@ -35,9 +35,11 @@ public class PlaygroundView extends JPanel {
 	private static final int SEA_W = 300;
 	
 	/** 一条小船的宽度 */
-	public static final int BOAT_W = 50;
+
+	public static final int BOAT_W = 69;
 	/** 一条小船的高度 */
-	public static final int BOAT_H = 140;
+	public static final int BOAT_H = 71;
+
 
 	/**港口的宽度**/
 	public static final int HARBOUR_W = 50;

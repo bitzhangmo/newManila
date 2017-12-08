@@ -87,8 +87,13 @@ public class GameController implements MouseListener{
 
 	public void clickedOnBoatyard(int x,int y)
 	{
+
         Boatyard boatyards = game.getBoatyards();
         /*for (int i = 0; i < boatyards.length; i++)
+
+        Boatyard[] boatyards = game.getBoatyards();
+        for (int i = 0; i < boatyards.length; i++)
+
         {
             if (boatyards[i].isCursorInside(x, y) && boatyards[i].isEmpty())
             {
@@ -110,13 +115,17 @@ public class GameController implements MouseListener{
 				this.game.getGameV().updatePlayersView(this.game.getCurrent_pid(), true);
             }
 
+
         }*/
+
 	}
 
 	public void clickedOnPirate(int x,int y){
 		// TODO Put a partner in Pirate
 		Pirate pirate=game.getPirates();
+
 		if(pirate.isCursorInside(x,y) && pirate.getPos_list().getSailorID()!=-1){//当可登船时
+
 			Player p = this.game.getCurrentPlayer();
 			if(p.payPos(pirate.getThePrice())){
 				pirate.getOnboard(p.getPid());
@@ -308,7 +317,11 @@ public class GameController implements MouseListener{
 	    	for(int i=0;i<2;i++){
 				//TODO 是否登船？
 				//是
+<<<<<<< yangWX
 				this.game.getPirates().getOnboat(boats[theBoat],this.game.getPirates().getPos_list().getSailorID());
+=======
+				this.game.getPirates().getOnboat(boats[theBoat],this.game.getPirates().getPos_list()[i].getSailorID());
+>>>>>>> dev
 				//否
 				//TODO set the
 				continue;
@@ -320,7 +333,11 @@ public class GameController implements MouseListener{
 				//TODO 是否劫掠？
 				//是
 				if(boatList!=null)
+<<<<<<< yangWX
 					this.game.getPirates().ravageBoat(boatList,this.game.getPirates().getPos_list().getSailorID());
+=======
+					this.game.getPirates().ravageBoat(boatList,this.game.getPirates().getPos_list()[i].getSailorID());
+>>>>>>> dev
 				//否
 				continue;
 			}

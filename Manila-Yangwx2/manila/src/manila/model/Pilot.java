@@ -51,6 +51,24 @@ public class Pilot {
     }*/
 
     /**
+     * 判断是否点击到领航员岛
+     * @param x 鼠标位置的横坐标
+     * @param y 鼠标位置的纵坐标
+     * @return 是否点到领航员岛
+     */
+    public boolean isCursorInside(int x, int y)
+    {
+        if (x <= (posX + PlaygroundView.HARBOUR_W) && x >= posX && y <= (posY + PlaygroundView.HARBOUR_H) && y >= posY)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    /**
      * 返回当前位置的费用
      * @return 当前位置的费用
 

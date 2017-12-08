@@ -13,7 +13,9 @@ public class Pirate {
 
 
     /**海盗船上的位置数组，0为船长，1为船员*/
+
     private Position pos_list;
+
     /**界面上的坐标位置**/
     private int posX;
     private int posY;
@@ -21,13 +23,17 @@ public class Pirate {
      * 海盗船构造函数
      * @param p 海盗船位置数组
      */
+
     public Pirate(Position p) {
+
         this.pos_list = p;
     }
 
     /**
      * 获得海盗船当前空着的位置的编号（登船时自动从较低的编号开始）
      * @return 当前编号最小的空位所对应的编号值
+
+     */
 
     public int getAvailPosIndex() {
         for(int i=0; i<this.pos_list.length; i++){
@@ -36,7 +42,8 @@ public class Pirate {
         }
         // no position left
         return -1;
-    } */
+ */
+
 
     /**
      * 当一个玩家分配海员登上海盗船时，调用该函数用以更新船上位置的信息
@@ -44,6 +51,7 @@ public class Pirate {
      */
     public void getOnboard(int pid){
         this.pos_list.setSailorID(pid);
+
     }
 
     /**
@@ -70,7 +78,9 @@ public class Pirate {
     }
 
     public int getThePrice(){
+
             return pos_list.getPrice();
+
     }
 
     /**
@@ -214,6 +224,7 @@ public class Pirate {
     }
 
     public void setPos_list(Position pos_list) {
+
         this.pos_list = pos_list;
     }
     public int getPosX()

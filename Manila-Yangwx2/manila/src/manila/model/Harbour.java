@@ -99,10 +99,12 @@ public class Harbour
         this.boat = boat;
     }
 
+
     public Position getPos()
     {
         return this.pos;
     }
+
     public int getPosX()
     {
         return this.posX;

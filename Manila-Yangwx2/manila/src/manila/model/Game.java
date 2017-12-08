@@ -18,7 +18,9 @@ public class Game {
 	/** 港口数组  */
 	private Harbour[] harbours;
 	/** 修船厂数组  */
+
 	private Boatyard boatyards;
+
 	/** 海盗船数组  */
 	private Pirate pirate;
     /** 领航员数组  */
@@ -133,8 +135,10 @@ public class Game {
 	private void initBoat(){
 		//每艘船上的位置的价钱
 		int[] prices1 = {3,4,5,5};
+
 		int[] prices2 = {2,3,3,5};
 		int[] prices3 = {3,4,5,5};
+
 		//每艘船上的位置
 		Position[] pos1 = new Position[prices1.length];
 		Position[] pos2 = new Position[prices2.length];
@@ -172,7 +176,9 @@ public class Game {
 		int priatePrice = 6;
 
 		//海盗船的位置
+
 		Position priatePos = new Position(priatePrice);
+
 
 		//初始化海盗船
 		Pirate thePirate = new Pirate(priatePos);
@@ -225,9 +231,11 @@ public class Game {
 		int profit = 3;
 
 		//初始化修船厂
+
 		//TODO To set new boatyards
 
 		boatyards=new Boatyard(boatyardPrice,profit);
+
 	}
 
 	/**
@@ -333,6 +341,7 @@ public class Game {
 			else
 				System.out.println("The boat "+s.getCargo_name()+" has sank!");
 		}
+
         for(Harbour h : this.harbours)
         {
             if(h.getPos().getSailorID() != -1)
@@ -348,6 +357,7 @@ public class Game {
         {
             this.players[this.boatyards.getPos().getSailorID()].setAccount_balance(this.players[boatyards.getPos().getSailorID()].getAccount_balance() + boatyards.getProfit());
         }
+
 	}
 	
 	/**
@@ -497,6 +507,7 @@ public class Game {
     {
         return harbours;
     }
+
 
     public Boatyard getBoatyards()
 	{

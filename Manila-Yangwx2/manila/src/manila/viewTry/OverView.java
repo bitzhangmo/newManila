@@ -43,7 +43,9 @@ public class OverView extends JFrame {
 	public OverView(Game g) {
 
 	    this.g = g;
+
 	    g.calculateProfits();
+
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1498, 740);
@@ -92,7 +94,9 @@ public class OverView extends JFrame {
             public void mouseClicked(MouseEvent e) {
                 if(g.getCurrent_time() != Game.ROUND_NUMBER/*false*/)
                 {
+
                     mv = new MainView();
+
                     mv.setVisible(true);
                 }
                 else if(!endPn.isVisible())
@@ -132,32 +136,41 @@ public class OverView extends JFrame {
 		/*同伙一获得的利润*/
 		JLabel player1Part1 = new JLabel("");
 		player1Part1.setBounds(409, 289, 81, 21);
+
 		//contentPane.add(player1Part1);
+
 		
 		/*同伙二获得的利润*/
 		JLabel player1Part2 = new JLabel("");
 		player1Part2.setBounds(409, 344, 81, 21);
+
 		//contentPane.add(player1Part2);
+
 		
 		/*同伙三获得的利润*/
 		JLabel player1Part3 = new JLabel("");
 		player1Part3.setBounds(409, 392, 81, 21);
+
 		//contentPane.add(player1Part3);
+
 		
 		/*玩家一获得的总利润*/
 		JLabel player1Profit = new JLabel("");
 		player1Profit.setBounds(409, 438, 81, 21);
+
 		//contentPane.add(player1Profit);
 		
 		/*玩家一当前资产*/
 		JLabel player1Mon = new JLabel("");
 		player1Mon.setText(String.valueOf(g.getPlayers()[0].getAccount_balance()));
+
 		player1Mon.setBounds(409, 487, 81, 21);
 		contentPane.add(player1Mon);
 		
 		/*玩家二的利润统计*/
 		JLabel player2Part1 = new JLabel("");
 		player2Part1.setBounds(631, 292, 81, 21);
+
 		//contentPane.add(player2Part1);
 		
 		JLabel player2Part2 = new JLabel("");
@@ -175,11 +188,13 @@ public class OverView extends JFrame {
 		JLabel player2Mon = new JLabel("");
 		player2Mon.setBounds(631, 491, 81, 21);
         player2Mon.setText(String.valueOf(g.getPlayers()[1].getAccount_balance()));
+
 		contentPane.add(player2Mon);
 		
 		/*玩家三的利润统计*/
 		JLabel player3Part1 = new JLabel("");
 		player3Part1.setBounds(859, 297, 81, 21);
+
 		//contentPane.add(player3Part1);
 		
 		JLabel player3Part2 = new JLabel("");
@@ -197,11 +212,13 @@ public class OverView extends JFrame {
 		JLabel player3Mon = new JLabel("");
 		player3Mon.setBounds(859, 495, 81, 21);
         player3Mon.setText(String.valueOf(g.getPlayers()[2].getAccount_balance()));
+
 		contentPane.add(player3Mon);
 		
 		/*玩家四的利润统计*/
 		JLabel player4Part1 = new JLabel("");
 		player4Part1.setBounds(1076, 302, 81, 21);
+
 		//contentPane.add(player4Part1);
 		
 		JLabel player4Part2 = new JLabel("");
@@ -219,6 +236,7 @@ public class OverView extends JFrame {
 		JLabel player4Mon = new JLabel("");
 		player4Mon.setBounds(1076, 500, 81, 21);
         player4Mon.setText(String.valueOf(g.getPlayers()[3].getAccount_balance()));
+
 		contentPane.add(player4Mon);
 		
 		/*背景*/
