@@ -17,13 +17,29 @@ public class EventView extends JFrame {
 
 	private JPanel contentPane;
 	private Game g;
+
+    /**第六个事件：领航员移动船只*/
 	private JPanel event6;
+    /**第五个事件：拥有海盗的玩家选择是否劫掠*/
     private JPanel event5;
+    private JLabel onPlayer;
+    /**事件四：拥有海盗的玩家选择是否登船*/
     private JPanel event4;
+    /**事件三：船难（船没有到达港口）*/
     private JPanel event3;
+    private JLabel destroyBoat;
+    /**事件二：海盗劫掠*/
     private JPanel event2;
+    private JLabel robBoat;
+    /**事件一：海盗登船*/
     private JPanel event1;
+    private JLabel onBoat;
+    /**事件零：船移动*/
     private JPanel event0;
+    private JLabel boat1For;
+    private JLabel boat2For;
+    private JLabel boat3For;
+
 
 	/**
 	 * Launch the application.
@@ -131,6 +147,9 @@ public class EventView extends JFrame {
                     case 3 : g.getBoats()[2].setPos_in_the_sea(g.getBoats()[2].getPos_in_the_sea() - 1);break;
                     case 4 : g.getBoats()[2].setPos_in_the_sea(g.getBoats()[2].getPos_in_the_sea() - 2);break;
                 }
+
+                event6.setVisible(false);
+
             }
 
             @Override
@@ -166,7 +185,9 @@ public class EventView extends JFrame {
 		event5.setBounds(0, 0, 1493, 700);
 		contentPane.add(event5);
 		event5.setLayout(null);
-		event5.setVisible(false);
+
+		event5.setVisible(true);
+
 
 		/*可变。拥有海盗同伙的玩家名*/
 		JLabel robPlayer = new JLabel("");
@@ -187,14 +208,18 @@ public class EventView extends JFrame {
 		robBoat2.setIcon(new ImageIcon("images\\robBoat2.png"));
 		robBoat2.setBounds(592, 263, 375, 76);
 		event5.add(robBoat2);
-		robBoat2.setVisible(false);
+
+		robBoat2.setVisible(true);
+
 
 		/*劫掠按钮。如果Boat3可劫掠，则此label可见*/
 		JLabel robBoat3 = new JLabel("");
 		robBoat3.setIcon(new ImageIcon("images\\robBoat3.png"));
 		robBoat3.setBounds(592, 328, 375, 76);
 		event5.add(robBoat3);
-		robBoat3.setVisible(false);
+
+		robBoat3.setVisible(true);
+
 
 		/*按钮。点击后停靠在修船场*/
 		JLabel stop1 = new JLabel("");
@@ -241,7 +266,9 @@ public class EventView extends JFrame {
 		event4.setVisible(false);
 
 		/*可变。拥有海盗同伙的玩家名字。*/
-		JLabel onPlayer = new JLabel("");
+
+		onPlayer = new JLabel("");
+
 		onPlayer.setIcon(new ImageIcon("images\\player1Name.PNG"));
 		onPlayer.setBounds(667, 150, 80, 50);
 		event4.add(onPlayer);
@@ -289,11 +316,41 @@ public class EventView extends JFrame {
 		driveBg.setIcon(new ImageIcon("images\\drive.png"));
 		driveBg.setBounds(640, 422, 297, 127);
 		event4.add(driveBg);
-		driveBg.setVisible(false);
+
+		driveBg.setVisible(true);
+
 
 		/*按钮。下一步*/
 		JLabel nextBtn4 = new JLabel("");
 		nextBtn4.setBounds(951, 551, 46, 42);
+
+		nextBtn4.addMouseListener(new MouseListener() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                event4.setVisible(false);
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+
+            }
+        });
+
 		event4.add(nextBtn4);
 
 		/*事件四背景*/
@@ -310,7 +367,9 @@ public class EventView extends JFrame {
 		event3.setVisible(false);
 
 		/*可变。遭遇船难的船的名字*/
-		JLabel destroyBoat = new JLabel("");
+
+		destroyBoat = new JLabel("");
+
 		destroyBoat.setIcon(new ImageIcon("images\\boat1Name.PNG"));
 		destroyBoat.setBounds(687, 458, 200, 50);
 		event3.add(destroyBoat);
@@ -318,6 +377,34 @@ public class EventView extends JFrame {
 		/*按钮。下一步*/
 		JLabel nextBtn3 = new JLabel("");
 		nextBtn3.setBounds(951, 551, 46, 42);
+
+		nextBtn3.addMouseListener(new MouseListener() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                event3.setVisible(false);
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+
+            }
+        });
+
 		event3.add(nextBtn3);
 
 		/*事件三背景*/
@@ -334,7 +421,9 @@ public class EventView extends JFrame {
 		event2.setVisible(false);
 
 		/*可变。被劫掠的船的名字*/
-		JLabel robBoat = new JLabel("");
+
+		robBoat = new JLabel("");
+
 		robBoat.setIcon(new ImageIcon("images\\boat1Name.PNG"));
 		robBoat.setBounds(779, 486, 200, 50);
 		event2.add(robBoat);
@@ -342,6 +431,34 @@ public class EventView extends JFrame {
 		/*按钮。下一步*/
 		JLabel nextBtn2 = new JLabel("");
 		nextBtn2.setBounds(951, 551, 46, 42);
+
+		nextBtn2.addMouseListener(new MouseListener() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                event2.setVisible(false);
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+
+            }
+        });
+
 		event2.add(nextBtn2);
 
 		/*事件二背景*/
@@ -358,7 +475,9 @@ public class EventView extends JFrame {
 		event1.setVisible(false);
 
 		/*可变。被登上的船的名字*/
+
 		JLabel onBoat = new JLabel("");
+
 		onBoat.setIcon(new ImageIcon("images\\boat1Name.PNG"));
 		onBoat.setBounds(774, 465, 200, 50);
 		event1.add(onBoat);
@@ -366,6 +485,34 @@ public class EventView extends JFrame {
 		/*按钮。下一步*/
 		JLabel nextBtn1 = new JLabel("");
 		nextBtn1.setBounds(952, 552, 44, 40);
+
+		nextBtn1.addMouseListener(new MouseListener() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                event1.setVisible(false);
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+
+            }
+        });
+
 		event1.add(nextBtn1);
 
 		/*事件一背景*/
@@ -382,23 +529,57 @@ public class EventView extends JFrame {
 		event0.setVisible(false);
 
 		/*可变。寒鸦号前进了多少*/
-		JLabel boat1For = new JLabel("");
+
+		boat1For = new JLabel("");
+
 		boat1For.setBounds(837, 446, 81, 21);
 		event0.add(boat1For);
 
 		/*可变。黑珍珠号前进了多少*/
-		JLabel boat2For = new JLabel("");
+
+		boat2For = new JLabel("");
+
 		boat2For.setBounds(836, 481, 81, 21);
 		event0.add(boat2For);
 
 		/*可变。复仇女王号前进了多少*/
-		JLabel boat3For = new JLabel("");
+
+		boat3For = new JLabel("");
+
 		boat3For.setBounds(832, 515, 81, 21);
 		event0.add(boat3For);
 
 		/*按钮。下一步*/
 		JLabel nextBtn0 = new JLabel("");
 		nextBtn0.setBounds(955, 554, 39, 39);
+
+		nextBtn0.addMouseListener(new MouseListener() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                event0.setVisible(false);
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+
+            }
+        });
+
 		event0.add(nextBtn0);
 
 		/*事件零背景*/
@@ -413,4 +594,55 @@ public class EventView extends JFrame {
 		bg.setIcon(new ImageIcon("images\\eventBg.png"));
 		contentPane.add(bg);
 	}
+
+
+    /**
+     * 当event0变为true是必须调用
+     * @param move_1 第一艘船的移动距离
+     * @param move_2 第二艘船的移动距离
+     * @param move_3 第三艘船的移动距离
+     */
+	public void event0Set(int move_1, int move_2, int move_3)
+    {
+        this.boat1For.setText(String.valueOf(move_1));
+        this.boat2For.setText(String.valueOf(move_2));
+        this.boat3For.setText(String.valueOf(move_3));
+    }
+
+    /**
+     *  当event1变为true是必须调用
+     * @param name 船的名字
+     */
+    public void event1Set(String name)
+    {
+        this.onBoat.setText(name);
+    }
+
+    /**
+     *  当event2变为true是必须调用
+     * @param name 船的名字
+     */
+    public void event2Set(String name)
+    {
+        this.robBoat.setText(name);
+    }
+
+    /**
+     *  当event3变为true是必须调用
+     * @param name 船的名字
+     */
+    public void event3Set(String name)
+    {
+        this.destroyBoat.setText(name);
+    }
+
+    /**
+     *  当event5变为true是必须调用
+     * @param name 海盗的名字
+     */
+    public void event5Set(String name)
+    {
+        this.onPlayer.setText(name);
+    }
+
 }

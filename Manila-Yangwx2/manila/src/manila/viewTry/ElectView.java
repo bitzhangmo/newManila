@@ -1,5 +1,6 @@
 package manila.viewTry;
 
+
 import manila.model.Game;
 
 import java.awt.BorderLayout;
@@ -23,7 +24,9 @@ import javax.swing.JComboBox;
 
 public class ElectView extends JFrame {
 
+
 	private Game game;
+
 	private JPanel mainJp;
 	private JTextField electMoney;
 	private static BossView bv;
@@ -47,6 +50,7 @@ public class ElectView extends JFrame {
 	/**
 	 * Create the frame.
 	 */
+
 	public ElectView(Game g) {
 		this.game=g;
 		setResizable(false);
@@ -108,7 +112,9 @@ public class ElectView extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				// TODO Auto-generated method stub
+
 				bv=new BossView(game);
+
 				bv.setVisible(true);
 			}
 

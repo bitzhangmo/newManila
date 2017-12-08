@@ -1,8 +1,10 @@
 package manila.viewTry;
 
+
 import manila.controller.GameController;
 import manila.controller.MainController;
 import manila.model.Game;
+
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
@@ -21,10 +23,12 @@ import java.awt.event.ActionEvent;
 public class MainView extends JFrame {
 
     private JPanel contentPane;
+
     private Game game;
     private MainController mc;
     private static int XPOINT=100;
     private static int YPOINT=100;
+
     /**
      * Launch the application.
      */
@@ -32,7 +36,9 @@ public class MainView extends JFrame {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
+
                     MainView frame = new MainView(new Game());
+
                     frame.setVisible(true);
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -44,12 +50,14 @@ public class MainView extends JFrame {
     /**
      * Create the frame.
      */
+
     public MainView(Game g) {
         this.game=g;
         this.mc=new MainController(game,this);
         setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(XPOINT, YPOINT, 1498, 740);
+
         contentPane = new JPanel();
         contentPane.setBorder(new EmptyBorder(0, 0, 0, 0));
         setContentPane(contentPane);
@@ -207,13 +215,17 @@ public class MainView extends JFrame {
         sitPlace1.setIcon(new ImageIcon("images\\sitPlace1.png"));
         sitPlace1.setBounds(37, 88, 409, 68);
         sitPn.add(sitPlace1);
+
         sitPlace1.addMouseListener(mc);
+
 
         JLabel sitPlace2 = new JLabel("");
         sitPlace2.setIcon(new ImageIcon("images\\sitPlace2.png"));
         sitPlace2.setBounds(37, 137, 409, 68);
         sitPn.add(sitPlace2);
+
         sitPlace2.addMouseListener(mc);
+
 
         JLabel sitPlace3 = new JLabel("");
         sitPlace3.setIcon(new ImageIcon("images\\sitPlace3.png"));
@@ -821,13 +833,16 @@ public class MainView extends JFrame {
         JLabel boat1 = new JLabel("");
         boat1.setIcon(new ImageIcon("images\\boat1.png"));
         boat1.setBounds(1176, 150, 69, 71);
+
         this.game.getBoats()[0].setPosX(1176);
         this.game.getBoats()[0].setPosY(150);
        /* boat1.addMouseListener(new MouseListener() {
 
+
             @Override
             public void mouseClicked(MouseEvent e) {
                 // TODO Auto-generated method stub
+
                 //sitPn.setVisible(true);
                 System.out.println("Clicked 1 Boat");
 
@@ -857,26 +872,32 @@ public class MainView extends JFrame {
 
             }
 
+
         });*/
         contentPane.add(boat1);
 
        boat1.addMouseListener(mc);
+
 		/*黑珍珠号（中间的船）*/
         JLabel boat2 = new JLabel("");
         boat2.setIcon(new ImageIcon("images\\boat2.png"));
         boat2.setBounds(1187, 274, 65, 71);
+
         this.game.getBoats()[1].setPosX(1187);
         this.game.getBoats()[1].setPosY(274);
         boat2.addMouseListener(mc);
+
         contentPane.add(boat2);
 
 		/*复仇女王号（最下面的船）*/
         JLabel boat3 = new JLabel("");
         boat3.setIcon(new ImageIcon("images\\boat3.png"));
         boat3.setBounds(1139, 425, 62, 65);
+
         this.game.getBoats()[2].setPosX(1139);
         this.game.getBoats()[2].setPosY(425);
         boat3.addMouseListener(mc);
+
         contentPane.add(boat3);
 
 		/*主页面背景*/

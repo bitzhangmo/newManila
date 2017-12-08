@@ -1,5 +1,6 @@
 package manila.viewTry;
 
+
 import manila.model.Game;
 
 import java.awt.BorderLayout;
@@ -16,6 +17,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 public class BossView extends JFrame {
+
 
 	private Game game;
 	private JPanel contentPane;
@@ -41,8 +43,10 @@ public class BossView extends JFrame {
 	/**
 	 * Create the frame.
 	 */
+
 	public BossView(Game g) {
 		this.game=g;
+
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1498, 740);
@@ -88,7 +92,9 @@ public class BossView extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				// TODO Auto-generated method stub
+
 				mv=new MainView(game);
+
 				mv.setVisible(true);
 			}
 

@@ -49,6 +49,7 @@ public class Pilot {
         // no position left
         return -1;
     }*/
+
     /**
      * 判断是否点击到领航员岛
      * @param x 鼠标位置的横坐标
@@ -66,6 +67,7 @@ public class Pilot {
             return false;
         }
     }
+
     /**
      * 返回当前位置的费用
      * @return 当前位置的费用
