@@ -1,5 +1,7 @@
 package manila.viewTry;
 
+import manila.model.Game;
+
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
@@ -17,6 +19,7 @@ import java.awt.event.ActionEvent;
 
 public class StartView extends JFrame {
 
+	private Game game;
 	private JPanel contentPane;
 	private static ElectView ev;
 
@@ -27,7 +30,7 @@ public class StartView extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					StartView frame = new StartView();
+					StartView frame = new StartView(new Game());
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -40,7 +43,8 @@ public class StartView extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public StartView() {
+	public StartView(Game g) {
+		this.game=g;
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1498, 740);
@@ -57,7 +61,7 @@ public class StartView extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				// TODO Auto-generated method stub
-				ev=new ElectView();
+				ev=new ElectView(game);
 				ev.setVisible(true);
 			}
 
