@@ -72,7 +72,7 @@ public class Boatyard
      */
     public boolean isCursorInside(int x, int y)
     {
-        if (x <= (posX + PlaygroundView.HARBOUR_W) && x >= posX && y <= (posY + PlaygroundView.HARBOUR_H) && y >= posY)
+        if (x <= (posX + PlaygroundView.Boatyard_W) && x >= posX && y <= (posY + PlaygroundView.Boatyard_H) && y >= posY)
         {
             return true;
         }
@@ -88,7 +88,7 @@ public class Boatyard
      */
     public boolean isEmpty()
     {
-        if (this.pos.getSailorID() != -1)
+        if (this.pos.getSailorID() == -1)
         {
             return true;
         }
