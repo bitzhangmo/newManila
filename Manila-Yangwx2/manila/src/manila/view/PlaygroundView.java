@@ -50,9 +50,9 @@ public class PlaygroundView extends JPanel {
 	public static final int PILOT_H=72;
 
 	/**修船厂的宽度**/
-	public static final int Boatyard_W = 50;
+	public static final int Boatyard_W = 81;
 	/**修船厂的高度**/
-    public static final int Boatyard_H = 150;
+    public static final int Boatyard_H = 90;
 
 	/** 船之间的横向间隔 */
 	private static final int BOAT_DISTANCE = 50;

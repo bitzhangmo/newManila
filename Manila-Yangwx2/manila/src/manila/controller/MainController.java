@@ -37,7 +37,7 @@ public class MainController implements MouseListener{
                 System.out.println("isChoosing");
                 // TODO judge player choose which position to set
                 this.clickedOnBoat(e.getXOnScreen()-x, e.getYOnScreen()-y);
-                //this.clickedOnBoatyard(e.getXOnScreen()-x,e.getYOnScreen()-y);
+                this.clickedOnBoatyard(e.getXOnScreen()-x,e.getYOnScreen()-y);
                 //this.clickedOnHarbour(e.getXOnScreen()-x,e.getYOnScreen()-y);
                 this.clickedOnInsurance(e.getXOnScreen()-x,e.getYOnScreen()-y);
 				this.clickedOnPilot(e.getXOnScreen()-x,e.getYOnScreen()-y);
@@ -163,23 +163,23 @@ public class MainController implements MouseListener{
             if (boatyards.isCursorInside(x, y) && boatyards.isEmpty())
             {
                 Player p = this.game.getCurrentPlayer();
+
                 if (p.payPos(boatyards.getAvailablePrice()))
                 {
+                    System.out.print(p.getName());
+                    System.out.println("get on the boatyards");
                     boatyards.standInBoatyard(p.getPid());
                 }
                 else
                 {
                     //TODO
                 }
-                this.game.getGameV().getPlayground().repaint();
-                this.game.getGameV().updatePlayersView(p.getPid(), false);
-
-                changeToMoving();
-
+                //this.game.getGameV().getPlayground().repaint();
+                //this.game.getGameV().updatePlayersView(p.getPid(), false);
                 this.game.switchPlayer();
-                this.game.getGameV().updatePlayersView(this.game.getCurrent_pid(), true);
+                //this.game.getGameV().updatePlayersView(this.game.getCurrent_pid(), true);
             }
-
+        changeToMoving();
         }
 
     public void clickedOnPirate(int x,int y){

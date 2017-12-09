@@ -718,39 +718,9 @@ public class MainView extends JFrame {
 		/*修船场*/
         JLabel sitFix = new JLabel("");
         sitFix.setBounds(756, 374, 81, 45);
-        sitFix.addMouseListener(new MouseListener() {
-
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                // TODO Auto-generated method stub
-                sitPn.setVisible(true);
-            }
-
-            @Override
-            public void mouseEntered(MouseEvent e) {
-                // TODO Auto-generated method stub
-
-            }
-
-            @Override
-            public void mouseExited(MouseEvent e) {
-                // TODO Auto-generated method stub
-
-            }
-
-            @Override
-            public void mousePressed(MouseEvent e) {
-                // TODO Auto-generated method stub
-
-            }
-
-            @Override
-            public void mouseReleased(MouseEvent e) {
-                // TODO Auto-generated method stub
-
-            }
-
-        });
+        sitFix.addMouseListener(mc);
+        this.game.getBoatyards().setPosX(756);
+        this.game.getBoatyards().setPosY(374);
         contentPane.add(sitFix);
 
 		/*保险*/
