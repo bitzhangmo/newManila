@@ -17,6 +17,7 @@ import javax.swing.SwingConstants;
 import manila.controller.DiceController;
 import manila.model.Game;
 import manila.model.Player;
+import manila.viewTry.ElectView;
 
 /**
  * 游戏主界面，包含main函数
@@ -154,7 +155,7 @@ public class GameView extends JPanel {
 		mw.pack();
 		mw.setVisible(true);
 		
-		ChoosingBossView cbv = new ChoosingBossView(gv.game);
+		ChoosingBossView cbv = new ChoosingBossView(new ElectView(gv.game),gv.game);
 	}
 	
 }

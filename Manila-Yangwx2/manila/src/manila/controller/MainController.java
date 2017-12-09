@@ -37,11 +37,11 @@ public class MainController implements MouseListener{
                 System.out.println("isChoosing");
                 // TODO judge player choose which position to set
                 this.clickedOnBoat(e.getXOnScreen()-x, e.getYOnScreen()-y);
-                //this.clickedOnBoatyard(e.getX(),e.getY());
-                // this.clickedOnHarbour(e.getX(),e.getY());
-                //this.clickedOnInsurance(e.getX(),e.getY());
-				/*this.clickedOnPilot(arg0.getX(),arg0.getY());*/
-                // this.clickedOnPirate(e.getX(),e.getY());
+                //this.clickedOnBoatyard(e.getXOnScreen()-x,e.getYOnScreen()-y);
+                //this.clickedOnHarbour(e.getXOnScreen()-x,e.getYOnScreen()-y);
+                this.clickedOnInsurance(e.getXOnScreen()-x,e.getYOnScreen()-y);
+				this.clickedOnPilot(e.getXOnScreen()-x,e.getYOnScreen()-y);
+                //this.clickedOnPirate(e.getXOnScreen()-x,e.getYOnScreen()-y);
             }
             if (this.game.isEndMoving()) {
                 System.out.println("isEndMoving");
@@ -94,7 +94,6 @@ public class MainController implements MouseListener{
 
     public void clickedOnBoat(int x, int y)
     {
-        //System.out.println(">");
         Boat[] boats = game.getBoats();
         for(int i=0; i<boats.length; i++){
             System.out.println(">"+i);
@@ -102,27 +101,18 @@ public class MainController implements MouseListener{
             if(b.isCursorInside(x,y))
             {//if some boat was chose
                 System.out.println(b.getAvailPosIndex());
-                //if(b.getAvailPosIndex()==-1)break;
                 if(b.getAvailPosIndex() != -1)
                 {//if the boat is not empty,get on the boat
                     Player p = this.game.getCurrentPlayer();
-                    //System.out.println(this.game.getCurrent_pid());
                     if (p.payPos(b.getAvailPosPrice()))
                     {
-
                         b.getOnboard(p.getPid());
-                        //System.out.println(this.game.getPlayerByID(b.getPos_list()[0].getSailorID()).getAccount_balance());
                     }
                     else
                     {
                         //TODO 显示支付失败信息，同时进入选择售卖股票的流程，或进入下个玩家选择阶段
                     }
-
-                    //System.out.println(this.game.getPlayerByID(b.getPos_list()[0].getSailorID()).getName());
-                    //System.out.println(this.game.getPlayerByID(b.getPos_list()[0].getSailorID()).getAccount_balance());
-
                     changeToMoving();
-
                     this.game.switchPlayer();
                     break;
                 }
@@ -213,26 +203,38 @@ public class MainController implements MouseListener{
         }
     }
 
-	/*public void clickedOnPilot(int x,int y){
+	public void clickedOnPilot(int x,int y){
 		// TODO Put a partner in Pilot
 		Pilot pilot=this.game.getPilot();
-		if(pilot.isCursorInside(x,y)&&pilot.getAvailPosIndex()!=-1){
+		if(pilot.isCursorInside(x,y)&&pilot.getPos_list().getSailorID()==-1){
 			Player p =this.game.getCurrentPlayer();
 			if (p.payPos(pilot.getInsPosPrice())){
+			    System.out.println("pay for pilot");
 				pilot.getOnPilotIsland(p.getPid());
+				System.out.println(this.game.getPlayerByID(pilot.getPos_in_the_Pilot().getSailorID()).getName()+" is in the Pilot land");
 			}
-			this.game.getGameV().getPlayground().repaint();
-			this.game.getGameV().updatePlayersView(p.getPid(),false);
+//			this.game.getGameV().getPlayground().repaint();
+//			this.game.getGameV().updatePlayersView(p.getPid(),false);
 
 			changeToMoving();
 
 			this.game.switchPlayer();
-			this.game.getGameV().updatePlayersView(this.game.getCurrent_pid(),true);
+//			this.game.getGameV().updatePlayersView(this.game.getCurrent_pid(),true);
 		}
-	}*/
+	}
 
     public void clickedOnInsurance(int x,int y){
         // TODO Put a partner in Insurance
+        Insurance insurance=this.game.getInsurance();
+        if(insurance.isCursorInside(x,y)&&insurance.getPos_in_the_Insurance().getSailorID()==-1){
+            Player p=this.game.getCurrentPlayer();
+            p.setAccount_balance(p.getAccount_balance()+10);
+            System.out.println("get profit from insurance");
+            insurance.getInInsurance(p.getPid());
+            System.out.println(this.game.getPlayerByID(insurance.getPos_in_the_Insurance().getSailorID()).getName()+" is in the Insurance");
+        }
+        changeToMoving();
+        this.game.switchPlayer();
     }
 
 

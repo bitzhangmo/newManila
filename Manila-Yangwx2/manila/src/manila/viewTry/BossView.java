@@ -2,6 +2,7 @@ package manila.viewTry;
 
 
 import manila.model.Game;
+import manila.model.Stock;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
@@ -22,7 +23,8 @@ public class BossView extends JFrame {
 	private Game game;
 	private JPanel contentPane;
 	private static MainView mv;
-
+	private int[] cargoID;
+	private Stock[] stocks;
 	/**
 	 * Launch the application.
 
@@ -92,10 +94,12 @@ public class BossView extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				// TODO Auto-generated method stub
-
 				mv=new MainView(game);
-
 				mv.setVisible(true);
+				setVisible(false);
+				cargoID[0] = boat1Combo.getSelectedIndex();
+				cargoID[1] = boat2Combo.getSelectedIndex();
+				cargoID[2] = boat3Combo.getSelectedIndex();
 			}
 
 			@Override
@@ -129,5 +133,14 @@ public class BossView extends JFrame {
 		bossBg.setBounds(0, 0, 1493, 700);
 		bossBg.setIcon(new ImageIcon("images\\bossBg.png"));
 		contentPane.add(bossBg);
+	}
+
+	/**
+	 * 获取货物
+	 * @param i 船只编号
+	 * @return  返回船只上货物名称
+	 */
+	public int getCargo(int i) {
+		return cargoID[i];
 	}
 }

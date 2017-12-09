@@ -756,77 +756,17 @@ public class MainView extends JFrame {
 		/*保险*/
         JLabel sitInsur = new JLabel("");
         sitInsur.setBounds(959, 535, 65, 50);
-        sitInsur.addMouseListener(new MouseListener() {
-
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                // TODO Auto-generated method stub
-                sitPn.setVisible(true);
-            }
-
-            @Override
-            public void mouseEntered(MouseEvent e) {
-                // TODO Auto-generated method stub
-
-            }
-
-            @Override
-            public void mouseExited(MouseEvent e) {
-                // TODO Auto-generated method stub
-
-            }
-
-            @Override
-            public void mousePressed(MouseEvent e) {
-                // TODO Auto-generated method stub
-
-            }
-
-            @Override
-            public void mouseReleased(MouseEvent e) {
-                // TODO Auto-generated method stub
-
-            }
-
-        });
+        sitInsur.addMouseListener(mc);
+        this.game.getInsurance().setPosX(959);
+        this.game.getInsurance().setPosY(535);
         contentPane.add(sitInsur);
 
 		/*领航员*/
         JLabel sitLead = new JLabel("");
-        sitLead.setBounds(835, 237, 116, 36);
-        sitLead.addMouseListener(new MouseListener() {
-
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                // TODO Auto-generated method stub
-                sitPn.setVisible(true);
-            }
-
-            @Override
-            public void mouseEntered(MouseEvent e) {
-                // TODO Auto-generated method stub
-
-            }
-
-            @Override
-            public void mouseExited(MouseEvent e) {
-                // TODO Auto-generated method stub
-
-            }
-
-            @Override
-            public void mousePressed(MouseEvent e) {
-                // TODO Auto-generated method stub
-
-            }
-
-            @Override
-            public void mouseReleased(MouseEvent e) {
-                // TODO Auto-generated method stub
-
-            }
-
-        });
+        sitLead.setBounds(835, 237, 116, 72);
+        sitLead.addMouseListener(mc);
+        this.game.getPilot().setPosX(835);
+        this.game.getPilot().setPosY(237);
         contentPane.add(sitLead);
 
 		/*寒鸦号（最上面的船）*/
@@ -836,44 +776,7 @@ public class MainView extends JFrame {
 
         this.game.getBoats()[0].setPosX(1176);
         this.game.getBoats()[0].setPosY(150);
-       /* boat1.addMouseListener(new MouseListener() {
 
-
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                // TODO Auto-generated method stub
-
-                //sitPn.setVisible(true);
-                System.out.println("Clicked 1 Boat");
-
-            }
-
-            @Override
-            public void mouseEntered(MouseEvent e) {
-                // TODO Auto-generated method stub
-
-            }
-
-            @Override
-            public void mouseExited(MouseEvent e) {
-                // TODO Auto-generated method stub
-
-            }
-
-            @Override
-            public void mousePressed(MouseEvent e) {
-                // TODO Auto-generated method stub
-
-            }
-
-            @Override
-            public void mouseReleased(MouseEvent e) {
-                // TODO Auto-generated method stub
-
-            }
-
-
-        });*/
         contentPane.add(boat1);
 
        boat1.addMouseListener(mc);

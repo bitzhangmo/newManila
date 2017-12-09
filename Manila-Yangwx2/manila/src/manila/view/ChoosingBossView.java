@@ -14,6 +14,7 @@ import javax.swing.SwingConstants;
 import manila.controller.ChoosingBossController;
 import manila.model.Game;
 import manila.model.Player;
+import manila.viewTry.ElectView;
 
 /**
  * Manila 游戏选举船老大的窗口。
@@ -45,9 +46,9 @@ public class ChoosingBossView extends JFrame {
 	/** 简略版PlayerView的数组 */
 	private PlayerView[] pvList;
 	
-	public ChoosingBossView(Game g){
+	public ChoosingBossView(ElectView e, Game g){
 		this.game = g;
-		this.cbc = new ChoosingBossController(this,g);
+		this.cbc = new ChoosingBossController(e,g);
 		
 		this.content = new JPanel();
 		this.playerView = new JPanel();

@@ -1,6 +1,7 @@
 package manila.viewTry;
 
 
+import manila.controller.ChoosingBossController;
 import manila.model.Game;
 
 import java.awt.BorderLayout;
@@ -25,12 +26,24 @@ import javax.swing.JComboBox;
 public class ElectView extends JFrame {
 
 
-	private Game game;
 
+	private ChoosingBossController cbc;
 	private JPanel mainJp;
 	private JTextField electMoney;
 	private static BossView bv;
-
+	private int ielectMoney;
+	private Game game;
+	private JPanel electPn;
+	private JLabel curPlayer ;
+	private JLabel curPrice ;
+	private JLabel moneyLb;
+	private JLabel maxLb;
+	private JLabel player1;
+	private JLabel player2;
+	private JLabel player3;
+	private JLabel player4;
+	private JPanel resultPn;
+	private JLabel poorLb;
 	/**
 	 * Launch the application.
 
@@ -52,7 +65,9 @@ public class ElectView extends JFrame {
 	 */
 
 	public ElectView(Game g) {
+
 		this.game=g;
+		cbc = new ChoosingBossController(this,this.game);
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1498, 740);
@@ -62,39 +77,40 @@ public class ElectView extends JFrame {
 		mainJp.setLayout(null);
 		
 		/*玩家头像。默认为灰色。轮到该玩家进行竞价的时候头像变亮。*/
-		JLabel player1 = new JLabel("");
-		player1.setIcon(new ImageIcon("images\\player1Ico0.png"));
+		player1 = new JLabel("");
+		player1.setIcon(new ImageIcon("images/player1Ico1.png"));
 		player1.setBounds(295, 96, 204, 249);
 		mainJp.add(player1);
-		
-		JLabel player2 = new JLabel("");
-		player2.setIcon(new ImageIcon("images\\player2Ico0.png"));
+
+		player2 = new JLabel("");
+		player2.setIcon(new ImageIcon("images/player2Ico0.png"));
 		player2.setBounds(1012, 96, 204, 249);
 		mainJp.add(player2);
-		
-		JLabel player3 = new JLabel("");
-		player3.setIcon(new ImageIcon("images\\player3Ico0.png"));
+
+		player3 = new JLabel("");
+		player3.setIcon(new ImageIcon("images/player3Ico0.png"));
 		player3.setBounds(295, 347, 204, 249);
 		mainJp.add(player3);
-		
-		JLabel player4 = new JLabel("");
-		player4.setIcon(new ImageIcon("images\\player4Ico0.png"));
+
+		player4 = new JLabel("");
+		player4.setIcon(new ImageIcon("images/player4Ico0.png"));
 		player4.setBounds(1012, 347, 204, 249);
 		mainJp.add(player4);
 		
 		/*目前出价最高的玩家名*/
-		JLabel curPlayer = new JLabel("");
-		curPlayer.setIcon(new ImageIcon("images\\player1Name.PNG"));
+		curPlayer = new JLabel("");
+		curPlayer.setIcon(new ImageIcon("images/player1Name.PNG"));
 		curPlayer.setBounds(900, 452, 85, 30);
 		mainJp.add(curPlayer);
 		
-		/*目前最高价*/	
-		JLabel curPrice = new JLabel("");
-		curPrice.setBounds(720, 452, 80, 29);
+		/*目前最高价*/
+		curPrice = new JLabel("");
+		curPrice.setBounds(750, 452, 80, 29);
+		curPrice.setText("0");
 		mainJp.add(curPrice);
 		
 		/*显示竞价结果的弹窗。默认不可见。竞价结束后可见。*/
-		JPanel resultPn = new JPanel();
+		resultPn = new JPanel();
 		resultPn.setBorder(new EmptyBorder(0, 0, 0, 0));
 		resultPn.setBounds(514, 0, 479, 700);
 		mainJp.add(resultPn);
@@ -178,20 +194,22 @@ public class ElectView extends JFrame {
 		resultPnBg.setBounds(0, 0, 479, 700);
 		resultPn.add(resultPnBg);
 		
-		/*显示竞价的弹窗。默认不可见。点击竞价按钮后可见。*/		
-		JPanel electPn = new JPanel();
+		/*显示竞价的弹窗。默认不可见。点击竞价按钮后可见。*/
+		electPn = new JPanel();
 		electPn.setBounds(514, 119, 480, 314);
 		mainJp.add(electPn);
 		electPn.setLayout(null);
 		electPn.setVisible(false);
+
 		
 		/*显示玩家目前金钱*/
-		JLabel moneyLb = new JLabel("");
+		moneyLb = new JLabel("");
 		moneyLb.setBounds(281, 86, 96, 34);
 		electPn.add(moneyLb);
 		
+
 		/*显示玩家最高竞价*/
-		JLabel maxLb = new JLabel("");
+		maxLb = new JLabel("");
 		maxLb.setBounds(281, 129, 96, 34);
 		electPn.add(maxLb);
 		
@@ -241,31 +259,65 @@ public class ElectView extends JFrame {
 		
 		/*输入框右侧的确定按钮*/
 		JLabel electOk = new JLabel("");
-		electOk.setIcon(new ImageIcon("images\\nextBtn1.png"));
+		electOk.setIcon(new ImageIcon("images/nextBtn1.png"));
 		electOk.setBounds(327, 220, 24, 24);
 		electPn.add(electOk);
-		
+		electOk.addMouseListener(new MouseListener() {
+
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				setIelectMoney(Integer.parseInt(electMoney.getText()));
+				cbc.bid();
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void mouseExited(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void mousePressed(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+
+			}
+
+		});
+
 		/*默认不可见。如果金额不够变得可见。*/
-		JLabel poorLb = new JLabel("");
-		poorLb.setIcon(new ImageIcon("images\\poorLb.png"));
+		poorLb = new JLabel("");
+		poorLb.setIcon(new ImageIcon("images/poorLb.png"));
 		poorLb.setBounds(212, 265, 81, 21);
 		electPn.add(poorLb);
 		poorLb.setVisible(false);
-		
+
 		/*竞选框背景*/
 		JLabel electBg = new JLabel("");
 		electBg.setBounds(15, 0, 473, 323);
-		electBg.setIcon(new ImageIcon("images\\electPn.png"));
+		electBg.setIcon(new ImageIcon("images/electPn.png"));
 		electPn.add(electBg);
-		
+
 		JLabel electPnBg = new JLabel("");
-		electPnBg.setIcon(new ImageIcon("images\\electJpBg.png"));
+		electPnBg.setIcon(new ImageIcon("images/electJpBg.png"));
 		electPnBg.setBounds(0, 0, 480, 314);
 		electPn.add(electPnBg);
-		
-		/*竞选按钮点击事件*/		
+
+		/*竞选按钮点击事件*/
 		JLabel electBtn = new JLabel("");
-		electBtn.setIcon(new ImageIcon("images\\electBtn.png"));
+		electBtn.setIcon(new ImageIcon("images/electBtn.png"));
 		electBtn.setBounds(559, 347, 152, 77);
 		electBtn.addMouseListener(new MouseListener() {
 
@@ -273,50 +325,133 @@ public class ElectView extends JFrame {
 			public void mouseClicked(MouseEvent arg0) {
 				// TODO Auto-generated method stub
 				electPn.setVisible(true);
+				cbc.onClickBid();
 			}
 
 			@Override
 			public void mouseEntered(MouseEvent arg0) {
 				// TODO Auto-generated method stub
-				
+
 			}
 
 			@Override
 			public void mouseExited(MouseEvent arg0) {
 				// TODO Auto-generated method stub
-				
+
 			}
 
 			@Override
 			public void mousePressed(MouseEvent arg0) {
 				// TODO Auto-generated method stub
-				
+
 			}
 
 			@Override
 			public void mouseReleased(MouseEvent arg0) {
 				// TODO Auto-generated method stub
-				
+
 			}
-			
+
 		});
 		mainJp.add(electBtn);
-		
+
 		/*放弃按钮*/
 		JLabel abandonBtn = new JLabel("");
-		abandonBtn.setIcon(new ImageIcon("images\\abandonBtn.png"));
+		abandonBtn.setIcon(new ImageIcon("images/abandonBtn.png"));
 		abandonBtn.setBounds(776, 347, 152, 77);
 		mainJp.add(abandonBtn);
-		
+		abandonBtn.addMouseListener(new MouseListener() {
+
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				cbc.pass();
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void mouseExited(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void mousePressed(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+
+			}
+		});
+
 		/*竞选界面背景*/
 		JLabel bgLb = new JLabel("");
-		bgLb.setIcon(new ImageIcon("images\\electBg.png"));
+		bgLb.setIcon(new ImageIcon("images/electBg.png"));
 		bgLb.setBounds(0, 0, 1493, 700);
 		mainJp.add(bgLb);
-		
+
 		JLabel electbg = new JLabel("");
 		electbg.setBounds(87, 261, 473, 323);
 		mainJp.add(electbg);
-		electbg.setIcon(new ImageIcon("images\\electPn.png"));
+		electbg.setIcon(new ImageIcon("images/electPn.png"));
+	}
+
+	public void changeX(int i) {
+		switch(i) {
+			case 0:player1.setIcon(new ImageIcon("images/player1Ico0.png"));
+				player2.setIcon(new ImageIcon("images/player2Ico1.png"));
+			case 1:player2.setIcon(new ImageIcon("images/player2Ico0.png"));
+				player3.setIcon(new ImageIcon("images/player3Ico1.png"));
+			case 2:player3.setIcon(new ImageIcon("images/player3Ico0.png"));
+				player4.setIcon(new ImageIcon("images/player4Ico1.png"));
+			case 3:resultPn.setVisible(true);
+		}
+	}
+	public void changeCurPlayer(String p){
+		curPlayer.setIcon(new ImageIcon(p));
+	}
+	public void changeCurPrice(int i) {
+		String str_i = Integer.toString(i);
+		curPrice.setText(str_i);
+	}
+	public void setMoneyLb(int i) {
+		String str_i = Integer.toString(i);
+		moneyLb.setText(str_i);
+	}
+	public void setMaxLb(int i) {
+		String str_i = Integer.toString(i);
+		maxLb.setText(str_i);
+	}
+	public int getIelectMoney() {
+		return ielectMoney;
+	}
+
+	public void setIelectMoney(int ielectMoney) {
+		this.ielectMoney = ielectMoney;
+	}
+
+	public Game getGame() {
+		return game;
+	}
+
+	public void setGame(Game game) {
+		this.game = game;
+	}
+	public JPanel getElectPn() {
+		return electPn;
+	}
+	public JTextField getElectMoney() {
+		return electMoney;
+	}
+	public JLabel getPoorLb() {
+		return poorLb;
 	}
 }

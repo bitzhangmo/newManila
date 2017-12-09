@@ -27,10 +27,10 @@ public class Pilot {
     /**
      * 当一个玩家分配同伙到领航员岛时，调用该函数用以更新领航员岛上的信息
      * @param pid 登岛玩家的ID
-
+*/
     public void getOnPilotIsland(int pid){
-        this.pos_list[chooseAvailPosIndex()].setSailorID(pid);
-    }*/
+        this.pos_list.setSailorID(pid);
+    }
 
     /*public int chooseAvailPosIndex(){
         // TODO return the position which player chose
@@ -58,7 +58,7 @@ public class Pilot {
      */
     public boolean isCursorInside(int x, int y)
     {
-        if (x <= (posX + PlaygroundView.HARBOUR_W) && x >= posX && y <= (posY + PlaygroundView.HARBOUR_H) && y >= posY)
+        if (x <= (posX + PlaygroundView.PILOT_W) && x >= posX && y <= (posY + PlaygroundView.PILOT_H) && y >= posY)
         {
             return true;
         }
@@ -71,13 +71,13 @@ public class Pilot {
     /**
      * 返回当前位置的费用
      * @return 当前位置的费用
-
+    */
     public int getInsPosPrice(){
-        if(this.getAvailPosIndex()!=-1){
-               return pos_list[this.getAvailPosIndex()].getPrice();
+        if(this.getPos_list().getSailorID()!=-1){
+               return pos_list.getPrice();
             }
         else return -1;
-    }*/
+    }
 
     public Position getPos_in_the_Pilot() { return pos_list; }
 
