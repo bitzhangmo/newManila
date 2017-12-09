@@ -42,11 +42,12 @@ public class PlaygroundView extends JPanel {
 
 
 	/**港口的宽度**/
-	public static final int HARBOUR_W = 50;
+	public static final int HARBOUR_W = 81;
 	/**港口的高度**/
-	public static final int HARBOUR_H = 150;
-
+	public static final int HARBOUR_H = 52;
+    /**领航员岛的宽度*/
 	public static final int PILOT_W=116;
+	/**领航员岛的高度*/
 	public static final int PILOT_H=72;
 
 	/**修船厂的宽度**/
@@ -77,14 +78,8 @@ public class PlaygroundView extends JPanel {
 	/** 保险办事处的高度 */
 	public static final int INSURANCE_H = 50;
 
-	/** 保险办事处上位置的宽度 */
-	private static final int INS_POS_W = 40;
-	/** 保险办事处上位置的高度 */
-	private static final int INS_POS_H = 70;
-	/** 保险办事处上位置左上角的x坐标 */
-	private static final int INS_POS_START_X = 5;
-	/** 保险办事处上位置左上角的y坐标 */
-	private static final int INS_POS_START_Y = 20;
+    public static final int PIRATE_W=183;
+    public static final int PIRATE_H=45;
 	
 	private Game game;
 	

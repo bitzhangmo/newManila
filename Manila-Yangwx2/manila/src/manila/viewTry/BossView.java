@@ -94,9 +94,10 @@ public class BossView extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				// TODO Auto-generated method stub
-				mv=new MainView(game);
+				mv=new MainView(game,new EventView(game));
 				mv.setVisible(true);
 				setVisible(false);
+				cargoID=new int[3];
 				cargoID[0] = boat1Combo.getSelectedIndex();
 				cargoID[1] = boat2Combo.getSelectedIndex();
 				cargoID[2] = boat3Combo.getSelectedIndex();
