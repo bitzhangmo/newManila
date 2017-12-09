@@ -97,6 +97,7 @@ public class BossView extends JFrame {
 				mv=new MainView(game);
 				mv.setVisible(true);
 				setVisible(false);
+				cargoID = new int[3];
 				cargoID[0] = boat1Combo.getSelectedIndex();
 				cargoID[1] = boat2Combo.getSelectedIndex();
 				cargoID[2] = boat3Combo.getSelectedIndex();

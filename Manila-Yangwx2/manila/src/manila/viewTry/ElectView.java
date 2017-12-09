@@ -44,6 +44,8 @@ public class ElectView extends JFrame {
 	private JLabel player4;
 	private JPanel resultPn;
 	private JLabel poorLb;
+	private JLabel boss;
+	private JLabel bossLb;
 	/**
 	 * Launch the application.
 
@@ -161,13 +163,13 @@ public class ElectView extends JFrame {
 		});
 		
 		/*海港负责人的头像。根据竞价结果改变*/
-		JLabel boss = new JLabel("");
+	    boss = new JLabel("");
 		boss.setIcon(new ImageIcon("images\\player1Ico1.png"));
 		boss.setBounds(130, 141, 204, 150);
 		resultPn.add(boss);
 		
 		/*海港负责人的名字。根据竞价结果改变*/
-		JLabel bossLb = new JLabel("");
+		bossLb = new JLabel("");
 		bossLb.setIcon(new ImageIcon("images\\player1Name.PNG"));
 		bossLb.setBounds(96, 303, 80, 50);
 		resultPn.add(bossLb);
@@ -408,11 +410,16 @@ public class ElectView extends JFrame {
 		switch(i) {
 			case 0:player1.setIcon(new ImageIcon("images/player1Ico0.png"));
 				player2.setIcon(new ImageIcon("images/player2Ico1.png"));
+				break;
 			case 1:player2.setIcon(new ImageIcon("images/player2Ico0.png"));
 				player3.setIcon(new ImageIcon("images/player3Ico1.png"));
+				break;
 			case 2:player3.setIcon(new ImageIcon("images/player3Ico0.png"));
 				player4.setIcon(new ImageIcon("images/player4Ico1.png"));
+				break;
 			case 3:resultPn.setVisible(true);
+			cbc.confirm();
+			break;
 		}
 	}
 	public void changeCurPlayer(String p){
@@ -453,5 +460,11 @@ public class ElectView extends JFrame {
 	}
 	public JLabel getPoorLb() {
 		return poorLb;
+	}
+	public void setBoss(int boss_pid) {
+		int id = this.cbc.getBoss().getPid();
+		id += 1;
+		boss.setIcon(new ImageIcon("images\\player"+id+"Ico1.png"));
+		bossLb.setIcon(new ImageIcon("images\\player"+id+"Name.PNG"));
 	}
 }

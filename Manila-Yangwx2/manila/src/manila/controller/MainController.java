@@ -1,6 +1,6 @@
 package manila.controller;
 
-import javafx.stage.Screen;
+//import javafx.stage.Screen;
 import manila.model.*;
 import manila.viewTry.MainView;
 
@@ -110,7 +110,7 @@ public class MainController implements MouseListener{
                     }
                     else
                     {
-                        //TODO 显示支付失败信息，同时进入选择售卖股票的流程，或进入下个玩家选择阶段
+                        //TODO 鏄剧ず鏀粯澶辫触淇℃伅锛屽悓鏃惰繘鍏ラ�夋嫨鍞崠鑲＄エ鐨勬祦绋嬶紝鎴栬繘鍏ヤ笅涓帺瀹堕�夋嫨闃舵
                     }
                     changeToMoving();
                     this.game.switchPlayer();
@@ -185,7 +185,7 @@ public class MainController implements MouseListener{
     public void clickedOnPirate(int x,int y){
         // TODO Put a partner in Pirate
         Pirate pirate=game.getPirates();
-        if(pirate.isCursorInside(x,y) && pirate.getPos_list().getSailorID()!=-1){//当可登船时
+        if(pirate.isCursorInside(x,y) && pirate.getPos_list().getSailorID()!=-1){//褰撳彲鐧昏埞鏃�
             Player p = this.game.getCurrentPlayer();
             if(p.payPos(pirate.getThePrice())){
                 pirate.getOnboard(p.getPid());
@@ -240,7 +240,7 @@ public class MainController implements MouseListener{
 
     public void settingBoatPos(MouseEvent arg0){
         Player player=this.game.getPlayerByID(this.game.getBoss_pid());
-        //跳出是否购买股份面板
+        //璺冲嚭鏄惁璐拱鑲′唤闈㈡澘
         if(true)//the number to get from input
         {
             int stockID=0;
@@ -263,7 +263,7 @@ public class MainController implements MouseListener{
 
 
     /**
-     * 通过计算当前是否所有人都已经选完来撬动回合结束杠杆
+     * 閫氳繃璁＄畻褰撳墠鏄惁鎵�鏈変汉閮藉凡缁忛�夊畬鏉ユ挰鍔ㄥ洖鍚堢粨鏉熸潬鏉�
      */
     public void changeToMoving(){
         if(this.game.getCurrent_pid() == this.game.getBoss_pid()-1
@@ -294,16 +294,16 @@ public class MainController implements MouseListener{
     }
 
     /**
-     * 判断是否发生船难以及执行海盗登船
+     * 鍒ゆ柇鏄惁鍙戠敓鑸归毦浠ュ強鎵ц娴风洍鐧昏埞
      */
     public void disaster(){
-        /** 标记船难是否发生 */
+        /** 鏍囪鑸归毦鏄惁鍙戠敓 */
         boolean isDisasterHappened=false;
-        /** 标记不幸的船编号 */
+        /** 鏍囪涓嶅垢鐨勮埞缂栧彿 */
         int theBoat=-1;
         java.util.List<Boat> boatList=new ArrayList<>();
         Boat[] boats=this.game.getBoats();
-        for(int i=0;i<this.game.getBoats().length;i++){//遍历船只，如果刚好在13格则GG
+        for(int i=0;i<this.game.getBoats().length;i++){//閬嶅巻鑸瑰彧锛屽鏋滃垰濂藉湪13鏍煎垯GG
             if(boats[i].getPos_in_the_sea()==13){
                 theBoat=i;
                 boatList.add(boats[i]);
@@ -313,10 +313,10 @@ public class MainController implements MouseListener{
         }
         if(this.game.getCurrent_time()==2&&isDisasterHappened){
             for(int i=0;i<2;i++){
-                //TODO 是否登船？
-                //是
+                //TODO 鏄惁鐧昏埞锛�
+                //鏄�
                 this.game.getPirates().getOnboat(boats[theBoat],this.game.getPirates().getPos_list().getSailorID());
-                //否
+                //鍚�
                 //TODO set the
                 continue;
             }
@@ -324,11 +324,11 @@ public class MainController implements MouseListener{
         }
         if(this.game.getCurrent_time()==3&&isDisasterHappened){
             for(int i=0;i<2;i++){
-                //TODO 是否劫掠？
-                //是
+                //TODO 鏄惁鍔帬锛�
+                //鏄�
                 if(boatList!=null)
                     this.game.getPirates().ravageBoat(boatList,this.game.getPirates().getPos_list().getSailorID());
-                //否
+                //鍚�
                 continue;
             }
         }
