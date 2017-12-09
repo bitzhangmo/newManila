@@ -36,8 +36,8 @@ public class MainView extends JFrame {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    Game game=new Game();
-                    MainView frame = new MainView(game,new EventView(game));
+
+                    MainView frame = new MainView(new Game());
 
                     frame.setVisible(true);
                 } catch (Exception e) {
@@ -51,9 +51,9 @@ public class MainView extends JFrame {
      * Create the frame.
      */
 
-    public MainView(Game g,EventView ev) {
+    public MainView(Game g) {
         this.game=g;
-        this.mc=new MainController(game,this,ev);
+        this.mc=new MainController(game,this);
         setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(XPOINT, YPOINT, 1498, 740);
@@ -446,7 +446,39 @@ public class MainView extends JFrame {
         JLabel partBtn = new JLabel("");
         partBtn.setBounds(1323, 323, 137, 45);
         contentPane.add(partBtn);
-        partBtn.addMouseListener(mc);
+        partBtn.addMouseListener(new MouseListener() {
+
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                // TODO Auto-generated method stub
+                partPn.setVisible(true);
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                // TODO Auto-generated method stub
+
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                // TODO Auto-generated method stub
+
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+                // TODO Auto-generated method stub
+
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                // TODO Auto-generated method stub
+
+            }
+
+        });
 
 		/*资产按钮*/
         JLabel moneyBtn = new JLabel("");
@@ -534,33 +566,153 @@ public class MainView extends JFrame {
 		/*港口一（最上方）*/
         JLabel sitPort1 = new JLabel("");
         sitPort1.setBounds(414, 169, 81, 52);
-        this.game.getHarbours()[0].setPosX(414);
-        this.game.getHarbours()[0].setPosY(169);
-        sitPort1.addMouseListener(mc);
+        sitPort1.addMouseListener(new MouseListener() {
+
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                // TODO Auto-generated method stub
+                sitPn.setVisible(true);
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                // TODO Auto-generated method stub
+
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                // TODO Auto-generated method stub
+
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+                // TODO Auto-generated method stub
+
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                // TODO Auto-generated method stub
+
+            }
+
+        });
         contentPane.add(sitPort1);
 
 		/*港口二（中间）*/
         JLabel sitPort2 = new JLabel("");
         sitPort2.setBounds(427, 337, 81, 55);
-        sitPort2.addMouseListener(mc);
-        this.game.getHarbours()[1].setPosX(427);
-        this.game.getHarbours()[1].setPosY(337);
+        sitPort2.addMouseListener(new MouseListener() {
+
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                // TODO Auto-generated method stub
+                sitPn.setVisible(true);
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                // TODO Auto-generated method stub
+
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                // TODO Auto-generated method stub
+
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+                // TODO Auto-generated method stub
+
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                // TODO Auto-generated method stub
+
+            }
+
+        });
         contentPane.add(sitPort2);
 
 		/*港口三（最下面）*/
         JLabel sitPort3 = new JLabel("");
         sitPort3.setBounds(355, 425, 62, 45);
-        sitPort3.addMouseListener(mc);
-        this.game.getHarbours()[2].setPosX(355);
-        this.game.getHarbours()[2].setPosY(425);
+        sitPort3.addMouseListener(new MouseListener() {
+
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                // TODO Auto-generated method stub
+                sitPn.setVisible(true);
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                // TODO Auto-generated method stub
+
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                // TODO Auto-generated method stub
+
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+                // TODO Auto-generated method stub
+
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                // TODO Auto-generated method stub
+
+            }
+
+        });
         contentPane.add(sitPort3);
 
 		/*海盗船*/
         JLabel sitPirate = new JLabel("");
         sitPirate.setBounds(442, 524, 183, 45);
-        sitPirate.addMouseListener(mc);
-        this.game.getPirates().setPosX(442);
-        this.game.getPirates().setPosY(524);
+        sitPirate.addMouseListener(new MouseListener() {
+
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                // TODO Auto-generated method stub
+                sitPn.setVisible(true);
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                // TODO Auto-generated method stub
+
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                // TODO Auto-generated method stub
+
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+                // TODO Auto-generated method stub
+
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                // TODO Auto-generated method stub
+
+            }
+
+        });
         contentPane.add(sitPirate);
 
 		/*修船场*/

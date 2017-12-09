@@ -17,6 +17,7 @@ public class ChoosingBossController implements ActionListener {
 	private int bid_amount;
 	private int boss_pid;
 	private Game game;
+	private Player boss;
 	public ChoosingBossController(ElectView e,Game game){
 		this.bid_amount = 0;
 		this.ev = e;
@@ -28,7 +29,7 @@ public class ChoosingBossController implements ActionListener {
 	 */
 	public void onClickBid() {
 		ev.setMoneyLb(ev.getGame().getCurrentPlayer().getAccount_balance());
-		ev.setMaxLb(this.bid_amount - ev.getGame().getCurrentPlayer().getAccount_balance());
+		ev.setMaxLb(ev.getGame().getCurrentPlayer().getAccount_balance()-this.bid_amount);
 	}
 
 	/**点击确定键时发生的事件
@@ -39,19 +40,21 @@ public class ChoosingBossController implements ActionListener {
 	 */
 	public void bid(){
 		// 读取玩家输入的金额
+		System.out.println(this.bid_amount);
 		int amount = this.ev.getIelectMoney();
-		if((amount + this.bid_amount)>ev.getGame().getCurrentPlayer().getAccount_balance()) {
+		if((amount + this.bid_amount)<ev.getGame().getCurrentPlayer().getAccount_balance()) {
 			this.bid_amount += amount;
-			int ab = ev.getGame().getCurrentPlayer().getAccount_balance();
-			ab -= amount;
-			ev.getGame().getCurrentPlayer().setAccount_balance(ab);
+			
 			ev.getElectMoney().setText("");
 			ev.getElectPn().setVisible(false);
 			String path = "images/player"+(ev.getGame().getCurrent_pid()+1)+"Name.PNG";
 			ev.changeCurPlayer(path);
 			ev.changeCurPrice(this.bid_amount);
 			ev.changeX(ev.getGame().getCurrent_pid());
+			boss = ev.getGame().getCurrentPlayer();
 			ev.getGame().switchPlayer();
+			System.out.println("1");
+			
 
 
 		}
@@ -77,12 +80,14 @@ public class ChoosingBossController implements ActionListener {
 	 * 关闭竞选窗口，更新主游戏画面（扣除费用，并为船老大对应玩家加框）。
 	 */
 	public void confirm(){
+		boss_pid = boss.getPid();
 		Player p = this.ev.getGame().getPlayerByID(boss_pid);
 		p.setAccount_balance(p.getAccount_balance()-this.bid_amount);
 
 		// 设置当前玩家
 		this.ev.getGame().setCurrent_pid(boss_pid);
 		this.ev.getGame().setBoss_pid(boss_pid);
+		this.ev.setBoss(boss_pid);
 /*
 		this.ev.getGame().getGameV().updatePlayersView(0, false);
 
@@ -122,6 +127,10 @@ public class ChoosingBossController implements ActionListener {
 		else if(arg0.getActionCommand().equals("confirm")){
 			this.confirm();
 		}
+	}
+	
+	public Player getBoss() {
+		return boss;
 	}
 
 

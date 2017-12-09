@@ -99,8 +99,8 @@ public class Pirate {
      */
     public boolean isCursorInside(int x, int y)
     {
-        if(x > this.posX && x < this.posX+ PlaygroundView.PIRATE_W
-                && y > this.posY && y< this.posY+PlaygroundView.PIRATE_H)
+        if(x > this.posX && x < this.posX+ PlaygroundView.BOAT_W
+                && y > this.posY && y< this.posY+PlaygroundView.BOAT_H)
             return true;
 
         return false;
@@ -227,8 +227,6 @@ public class Pirate {
 
         this.pos_list = pos_list;
     }
-
-
     public int getPosX()
     {
         return this.posX;

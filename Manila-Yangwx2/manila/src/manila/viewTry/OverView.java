@@ -95,7 +95,7 @@ public class OverView extends JFrame {
                 if(g.getCurrent_time() != Game.ROUND_NUMBER/*false*/)
                 {
 
-                    mv = new MainView(g,new EventView(g));
+                    mv = new MainView(g);
 
                     mv.setVisible(true);
                 }

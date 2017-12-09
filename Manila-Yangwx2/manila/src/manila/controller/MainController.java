@@ -1,8 +1,7 @@
 package manila.controller;
 
-import javafx.stage.Screen;
+//import javafx.stage.Screen;
 import manila.model.*;
-import manila.viewTry.EventView;
 import manila.viewTry.MainView;
 
 import java.awt.*;
@@ -16,11 +15,10 @@ import java.util.ArrayList;
 public class MainController implements MouseListener{
     private Game game;
     private MainView mv;
-    private EventView eventView;
-    public MainController(Game g,MainView mainView,EventView ev){
+    public MainController(Game g,MainView mainView){
         this.mv=mainView;
         this.game=g;
-        this.eventView=ev;
+
     }
 
 
@@ -40,42 +38,10 @@ public class MainController implements MouseListener{
                 // TODO judge player choose which position to set
                 this.clickedOnBoat(e.getXOnScreen()-x, e.getYOnScreen()-y);
                 this.clickedOnBoatyard(e.getXOnScreen()-x,e.getYOnScreen()-y);
-                this.clickedOnHarbour(e.getXOnScreen()-x,e.getYOnScreen()-y);
+                //this.clickedOnHarbour(e.getXOnScreen()-x,e.getYOnScreen()-y);
                 this.clickedOnInsurance(e.getXOnScreen()-x,e.getYOnScreen()-y);
 				this.clickedOnPilot(e.getXOnScreen()-x,e.getYOnScreen()-y);
-                this.clickedOnPirate(e.getXOnScreen()-x,e.getYOnScreen()-y);
-            }
-            if(this.game.isMoving()){
-                // roll the dice to move the boats
-                if(!this.game.isGameIsOver() && this.game.isMoving()){
-                    System.out.println("isMoving");
-                    for(Boat b : this.game.getBoats()){
-                        b.move(this.game.rollDice());
-                    }
-//                    this.game.getGameV().getPlayground().repaint();
-
-                    // prepare the next round
-                    this.game.setCurrent_round(this.game.getCurrent_round()+1);
-                    //this.game.setChoosing(true);
-                    this.game.setMoving(false);
-                    this.game.setEndMoving(true);
-                    if(this.game.getCurrent_round() > Game.ROUND_NUMBER){
-                        // game is over
-                        //this.game.setGameIsOver(true);
-                        this.game.setChoosing(false);
-                        this.game.calculateProfits();
-
-                        //this.game.showWinner();
-                    }
-                    for(int i=0;i<this.game.getBoats().length;i++){
-                        if(this.game.getBoats()[i].getCargo_value()>=30){
-                            this.game.setGameIsOver(true);
-                            this.game.setChoosing(false);
-                            this.game.calculateProfits();
-                            this.game.showWinner();
-                        }
-                    }
-                }
+                //this.clickedOnPirate(e.getXOnScreen()-x,e.getYOnScreen()-y);
             }
             if (this.game.isEndMoving()) {
                 System.out.println("isEndMoving");
@@ -130,7 +96,7 @@ public class MainController implements MouseListener{
     {
         Boat[] boats = game.getBoats();
         for(int i=0; i<boats.length; i++){
-            //System.out.println(">"+i);
+            System.out.println(">"+i);
             Boat b = boats[i];
             if(b.isCursorInside(x,y))
             {//if some boat was chose
@@ -144,12 +110,14 @@ public class MainController implements MouseListener{
                     }
                     else
                     {
-                        //TODO 显示支付失败信息，同时进入选择售卖股票的流程，或进入下个玩家选择阶段
+                        //TODO 鏄剧ず鏀粯澶辫触淇℃伅锛屽悓鏃惰繘鍏ラ�夋嫨鍞崠鑲＄エ鐨勬祦绋嬶紝鎴栬繘鍏ヤ笅涓帺瀹堕�夋嫨闃舵
                     }
+                    changeToMoving();
                     this.game.switchPlayer();
                     break;
                 }
                 else if(b.getAvailPosIndex()==-1) {
+                    changeToMoving();
                 }
             }
         }
@@ -173,18 +141,20 @@ public class MainController implements MouseListener{
                 if (p.payPos(harbours[i].getAvailablePrice()))
                 {
                     harbours[i].standInThisHarbour(p.getPid());
-                    System.out.print(this.game.getPlayerByID(harbours[i].getPos().getSailorID()).getName());
-                    System.out.println("get on the Harbour "+i);
                 }
                 else
                 {
                     //TODO
                 }
+                this.game.getGameV().getPlayground().repaint();
+                this.game.getGameV().updatePlayersView(p.getPid(), false);
+
+                changeToMoving();
 
                 this.game.switchPlayer();
+                this.game.getGameV().updatePlayersView(this.game.getCurrent_pid(), true);
             }
         }
-        changeToMoving();
     }
 
     public void clickedOnBoatyard(int x,int y)
@@ -204,7 +174,10 @@ public class MainController implements MouseListener{
                 {
                     //TODO
                 }
+                //this.game.getGameV().getPlayground().repaint();
+                //this.game.getGameV().updatePlayersView(p.getPid(), false);
                 this.game.switchPlayer();
+                //this.game.getGameV().updatePlayersView(this.game.getCurrent_pid(), true);
             }
         changeToMoving();
         }
@@ -212,19 +185,22 @@ public class MainController implements MouseListener{
     public void clickedOnPirate(int x,int y){
         // TODO Put a partner in Pirate
         Pirate pirate=game.getPirates();
-        if(pirate.isCursorInside(x,y) && pirate.getPos_list().getSailorID()==-1){//当可登船时
+        if(pirate.isCursorInside(x,y) && pirate.getPos_list().getSailorID()!=-1){//褰撳彲鐧昏埞鏃�
             Player p = this.game.getCurrentPlayer();
             if(p.payPos(pirate.getThePrice())){
                 pirate.getOnboard(p.getPid());
-                System.out.print(this.game.getPlayerByID(pirate.getPos_list().getSailorID()).getName());
-                System.out.println(" get on the Pirate");
             }
             else{
                 // TODO
             }
+            this.game.getGameV().getPlayground().repaint();
+            this.game.getGameV().updatePlayersView(p.getPid(), false);
+
+            changeToMoving();
+
             this.game.switchPlayer();
+            this.game.getGameV().updatePlayersView(this.game.getCurrent_pid(), true);
         }
-        changeToMoving();
     }
 
 	public void clickedOnPilot(int x,int y){
@@ -237,11 +213,15 @@ public class MainController implements MouseListener{
 				pilot.getOnPilotIsland(p.getPid());
 				System.out.println(this.game.getPlayerByID(pilot.getPos_in_the_Pilot().getSailorID()).getName()+" is in the Pilot land");
 			}
+//			this.game.getGameV().getPlayground().repaint();
+//			this.game.getGameV().updatePlayersView(p.getPid(),false);
+
+			changeToMoving();
 
 			this.game.switchPlayer();
+//			this.game.getGameV().updatePlayersView(this.game.getCurrent_pid(),true);
 		}
-        changeToMoving();
-    }
+	}
 
     public void clickedOnInsurance(int x,int y){
         // TODO Put a partner in Insurance
@@ -260,7 +240,7 @@ public class MainController implements MouseListener{
 
     public void settingBoatPos(MouseEvent arg0){
         Player player=this.game.getPlayerByID(this.game.getBoss_pid());
-        //跳出是否购买股份面板
+        //璺冲嚭鏄惁璐拱鑲′唤闈㈡澘
         if(true)//the number to get from input
         {
             int stockID=0;
@@ -283,12 +263,20 @@ public class MainController implements MouseListener{
 
 
     /**
-     * 通过计算当前是否所有人都已经选完来撬动回合结束杠杆
+     * 閫氳繃璁＄畻褰撳墠鏄惁鎵�鏈変汉閮藉凡缁忛�夊畬鏉ユ挰鍔ㄥ洖鍚堢粨鏉熸潬鏉�
      */
     public void changeToMoving(){
         if(this.game.getCurrent_pid() == this.game.getBoss_pid()-1
                 || this.game.getCurrent_pid() == this.game.getPlayers().length+this.game.getBoss_pid()-1)
         {//all the one has chose the position
+            this.game.setChoosing(false);
+            this.game.setMoving(true);
+        }
+        int howManyBoatGG=0;
+        for(Boat b:this.game.getBoats()){
+            howManyBoatGG+=b.getAvailPosIndex();
+        }
+        if(howManyBoatGG==-3){
             this.game.setChoosing(false);
             this.game.setMoving(true);
         }
@@ -306,16 +294,16 @@ public class MainController implements MouseListener{
     }
 
     /**
-     * 判断是否发生船难以及执行海盗登船
+     * 鍒ゆ柇鏄惁鍙戠敓鑸归毦浠ュ強鎵ц娴风洍鐧昏埞
      */
     public void disaster(){
-        /** 标记船难是否发生 */
+        /** 鏍囪鑸归毦鏄惁鍙戠敓 */
         boolean isDisasterHappened=false;
-        /** 标记不幸的船编号 */
+        /** 鏍囪涓嶅垢鐨勮埞缂栧彿 */
         int theBoat=-1;
         java.util.List<Boat> boatList=new ArrayList<>();
         Boat[] boats=this.game.getBoats();
-        for(int i=0;i<this.game.getBoats().length;i++){//遍历船只，如果刚好在13格则GG
+        for(int i=0;i<this.game.getBoats().length;i++){//閬嶅巻鑸瑰彧锛屽鏋滃垰濂藉湪13鏍煎垯GG
             if(boats[i].getPos_in_the_sea()==13){
                 theBoat=i;
                 boatList.add(boats[i]);
@@ -325,10 +313,10 @@ public class MainController implements MouseListener{
         }
         if(this.game.getCurrent_time()==2&&isDisasterHappened){
             for(int i=0;i<2;i++){
-                //TODO 是否登船？
-                //是
+                //TODO 鏄惁鐧昏埞锛�
+                //鏄�
                 this.game.getPirates().getOnboat(boats[theBoat],this.game.getPirates().getPos_list().getSailorID());
-                //否
+                //鍚�
                 //TODO set the
                 continue;
             }
@@ -336,11 +324,11 @@ public class MainController implements MouseListener{
         }
         if(this.game.getCurrent_time()==3&&isDisasterHappened){
             for(int i=0;i<2;i++){
-                //TODO 是否劫掠？
-                //是
+                //TODO 鏄惁鍔帬锛�
+                //鏄�
                 if(boatList!=null)
                     this.game.getPirates().ravageBoat(boatList,this.game.getPirates().getPos_list().getSailorID());
-                //否
+                //鍚�
                 continue;
             }
         }

@@ -186,7 +186,7 @@ public class EventView extends JFrame {
 		contentPane.add(event5);
 		event5.setLayout(null);
 
-		event5.setVisible(false);
+		event5.setVisible(true);
 
 
 		/*可变。拥有海盗同伙的玩家名*/
@@ -526,7 +526,7 @@ public class EventView extends JFrame {
 		event0.setBounds(0, 0, 1493, 700);
 		contentPane.add(event0);
 		event0.setLayout(null);
-		event0.setVisible(true);
+		event0.setVisible(false);
 
 		/*可变。寒鸦号前进了多少*/
 
